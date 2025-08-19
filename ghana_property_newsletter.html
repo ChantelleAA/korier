@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Körier Realty - Premium Properties Newsletter</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #722f37 0%, #8b1538 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+        .company-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .tagline {
+            font-size: 16px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            font-weight: 300;
+        }
+        .hero-section {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+            position: relative;
+        }
+        .hero-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #722f37;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .limited-offer-badge {
+            background: linear-gradient(45deg, #dc143c, #b91c3c);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+        }
+        .property-image {
+            width: 100%;
+            max-width: 550px;
+            height: 350px;
+            margin: 20px auto;
+            border-radius: 15px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border: none;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #722f37;
+        }
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #722f37;
+            font-size: 18px;
+        }
+        .feature-description {
+            color: #6b7280;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        .property-showcase {
+            padding: 30px 20px;
+        }
+        .showcase-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #722f37;
+        }
+        .property-card {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .property-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            border: none;
+        }
+        .property-details {
+            padding: 20px;
+        }
+        .property-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .property-specs {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .property-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #dc143c;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #722f37 0%, #8b1538 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="0,0 100,0 80,100 0,100" fill="rgba(255,255,255,0.05)"/></svg>');
+        }
+        .cta-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cta-subtitle {
+            font-size: 18px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
+        }
+        .contact-info {
+            margin: 25px 0;
+            position: relative;
+            z-index: 2;
+        }
+        .phone {
+            font-size: 26px;
+            font-weight: bold;
+            margin: 12px 0;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .cta-button {
+            background: linear-gradient(45deg, #dc143c, #b91c3c);
+            color: white;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 20px rgba(220, 20, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(220, 20, 60, 0.4);
+            background: linear-gradient(45deg, #b91c3c, #991b37);
+        }
+        .footer {
+            background-color: #722f37;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .social-media {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .social-icon:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            color: white;
+        }
+        .social-icon img {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            filter: brightness(0) invert(1);
+        }
+        .social-icon span {
+            font-weight: 500;
+        }
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 20px;
+            }
+            .company-name {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="company-name">KÖRIER REALTY</div>
+            <div class="tagline">Premium Townhouses & Luxury Apartments in Adenta</div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="limited-offer-badge">Exclusive Adenta Properties</div>
+            <div class="hero-title">Featured Property of the Month</div>
+            <img class="property-image" src="image.png" alt="Körier Realty Luxury Interior">
+            <h3>Ultra-Luxury 3-Bedroom Townhouse</h3>
+            <p><strong>Location:</strong> Adenta, Adjacent SSNIT Flats, Accra</p>
+            <p><strong>Starting from:</strong> $60,000</p>
+            <div style="margin-top: 20px;">
+                <span style="background: #722f37; color: white; padding: 8px 15px; border-radius: 20px; margin: 5px; display: inline-block; font-size: 14px;">◇ Fully Fitted Kitchen</span>
+                <span style="background: #722f37; color: white; padding: 8px 15px; border-radius: 20px; margin: 5px; display: inline-block; font-size: 14px;">◆ Walk-in Closets</span>
+                <span style="background: #722f37; color: white; padding: 8px 15px; border-radius: 20px; margin: 5px; display: inline-block; font-size: 14px;">⬢ Self Compound</span>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⬥</div>
+                <div class="feature-title">Strategic Adenta Location</div>
+                <div class="feature-description">Easy access to East Legon, Aburi, Madina, West Legon with nearby markets, hospitals & banks</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">◆</div>
+                <div class="feature-title">Fully Fitted Kitchens</div>
+                <div class="feature-description">Complete with refrigerator, cooker unit, extractor, oven, microwave & washing machine</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">◈</div>
+                <div class="feature-title">24/7 Security & Safety</div>
+                <div class="feature-description">Electric security fencing, round-the-clock security with self compound development</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⬟</div>
+                <div class="feature-title">Premium Amenities</div>
+                <div class="feature-description">Swimming pool, gym, roof terrace, supermarket & standby generator</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">◇</div>
+                <div class="feature-title">Modern Interior Features</div>
+                <div class="feature-description">AC units, DSTV connection, walk-in closets, recessed lighting & tempered glass balustrades</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⬢</div>
+                <div class="feature-title">Spacious Parking & Water</div>
+                <div class="feature-description">Ample car parking spaces with backup water supply throughout the development</div>
+            </div>
+        </div>
+
+        <!-- Property Showcase -->
+        <div class="property-showcase">
+            <div class="showcase-title">Available Properties</div>
+            
+            <div class="property-card">
+                <img src="image.jpeg" alt="Körier Realty Townhouse">
+                <div class="property-details">
+                    <div class="property-title">Executive 4-Bedroom Townhouse</div>
+                    <div class="property-specs">4 Beds • 3 Baths • Walk-in Closets • Self Compound • Adenta</div>
+                    <div class="property-price">Starting from $75,000</div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <img src="image1.jpeg" alt="Körier Realty Luxury Apartment">
+                <div class="property-details">
+                    <div class="property-title">Luxury 3-Bedroom Apartment</div>
+                    <div class="property-specs">3 Beds • 2 Baths • Swimming Pool • Gym • Roof Terrace • Adenta</div>
+                    <div class="property-price">Starting from $60,000</div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <img src="c7.jpg" alt="Körier Realty Premium Interior">
+                <div class="property-details">
+                    <div class="property-title">Premium 3-Bedroom Townhouse</div>
+                    <div class="property-specs">3 Beds • 2.5 Baths • Fully Fitted Kitchen • AC Units • Adenta</div>
+                    <div class="property-price">Starting from $65,000</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <div class="cta-title">Secure Your Dream Home Today!</div>
+            <div class="cta-subtitle">Premium properties in Adenta starting from $60,000 - Contact us for flexible payment options</div>
+            
+            <div style="display: flex; justify-content: center; gap: 30px; margin: 30px 0; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold; color: #ffd700;">Modern</div>
+                    <div style="font-size: 14px;">Fully Fitted Homes</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold; color: #ffd700;">24/7</div>
+                    <div style="font-size: 14px;">Security & Safety</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold; color: #ffd700;">Prime</div>
+                    <div style="font-size: 14px;">Adenta Location</div>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <div class="phone">◆ 0501317335</div>
+                <div class="phone">◇ 0501317336</div>
+            </div>
+
+            <a href="tel:0501317335" class="cta-button">Call Now</a>
+            <a href="https://wa.me/233501317335" class="cta-button">WhatsApp</a>
+            <a href="mailto:info@korierrealty.com" class="cta-button">Email Us</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>KÖRIER REALTY</strong></p>
+            <p>Adenta, Adjacent SSNIT Flats, Accra</p>
+            <p>Email: info@korierrealty.com | sales@korierrealty.com</p>
+            <p>Website: www.korierrealty.com</p>
+            
+            <div class="social-media">
+                <a href="https://instagram.com/korierrealty" class="social-icon" target="_blank">
+                    <img src="instagram.png" alt="Instagram">
+                    <span>@korierrealty</span>
+                </a>
+                <a href="https://facebook.com/KorierRealty" class="social-icon" target="_blank">
+                    <img src="facebook.png" alt="Facebook">
+                    <span>Korier Realty</span>
+                </a>
+                <a href="https://linkedin.com/company/korier-realty" class="social-icon" target="_blank">
+                    <img src="linkedin.png" alt="LinkedIn">
+                    <span>Korier Realty</span>
+                </a>
+            </div>
+            
+            <p style="margin-top: 15px;">© 2025 Körier Realty. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
